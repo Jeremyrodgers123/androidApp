@@ -1,0 +1,671 @@
+@startuml
+
+title __PROJECT1's Class Diagram__\n
+
+  namespace com.main.project1 {
+    abstract class com.main.project1.AppDb {
+        {static} - INSTANCE : AppDb
+        {static} + GetDatabase()
+        {abstract} + GetFitnessProfileDao()
+        {abstract} + GetUserProfileDao()
+        {static} + SeedDatabase()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardActivity {
+        ~ mProfilePicturePath : String
+        ~ mUserName : String
+        {static} - Items : List<Item>
+        {static} - Parcel : DashboardData
+        + OnClick()
+        + OnFragmentInteractionListener()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardAdapter {
+        - mContext : Context
+        - mItems : List<Item>
+        - mUserName : String
+        + DashboardAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.DashboardAdapter.OnClickListener {
+        {abstract} + OnClick()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardAdapter.ViewHolder {
+        # itemImageView : ImageView
+        # itemLayout : View
+        # itemTextView : MaterialTextView
+        + ViewHolder()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardData {
+        {static} + CREATOR : Creator<DashboardData>
+        - DashboardItems : List<Item>
+        + Add()
+        + DashboardData()
+        + DashboardData()
+        + GetItems()
+        + describeContents()
+        + writeToParcel()
+        # DashboardData()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardData.Item {
+        + ImageId : int
+        + Text : String
+        + Item()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardFragment {
+        - mContext : Context
+        - mUserName : String
+        + DashboardFragment()
+        + onAttach()
+        + onCreateView()
+        + onDetach()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessActivity {
+        + dispatchTouchEvent()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfile {
+        + BasalMetabolicRate : int
+        + BodyMassIndex : double
+        + DailyCaloricRequirementToMaintainWeight : int
+        + DailyCaloricRequirementToMeetWeightGoal : int
+        + Height_in : double
+        {static} + MAXIMUM_HEIGHT_FT : int
+        {static} + MAXIMUM_HEIGHT_IN : int
+        {static} + MAXIMUM_WEIGHT_CHANGE_PER_WEEK_LB : int
+        {static} + MAXIMUM_WEIGHT_LB : int
+        {static} + MINIMUM_HEIGHT_FT : int
+        {static} + MINIMUM_HEIGHT_IN : int
+        {static} + MINIMUM_WEIGHT_CHANGE_PER_WEEK_LB : int
+        {static} + MINIMUM_WEIGHT_LB : int
+        + UserName : String
+        + WeightChangePerWeek_lb : double
+        + Weight_lb : int
+        {static} - BMR_GENDER_SPAN : int
+        {static} - CALORIC_REQUIREMENT_GENDER_SPAN : int
+        {static} - CENTIMETERS_PER_INCH : double
+        {static} - KILOGRAMS_PER_POUND : double
+        {static} - MAXIMUM_HEALTHY_WEIGHT_CHANGE_PER_WEEK_LB : int
+        {static} - MINIMUM_HEALTHY_WEIGHT_CHANGE_PER_WEEK_LB : int
+        + FitnessProfile()
+        + FitnessProfile()
+        + GetHeightInFeetAndInches()
+        + IsDailyCaloricRequirementToMeetGoalHealthy()
+        + IsWeightGoalHealthy()
+        + Update()
+        - CalculateBasalMetobolicRate()
+        - CalculateBodyMassIndex()
+        - CalculateDailyCaloricRequirement()
+        - CalculateDailyCaloricRequirement()
+        - FeetAndInchesToTotalInches()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    enum FitnessLevel {
+      ExtraActive
+      LightlyActive
+      ModeratelyActive
+      Sedentary
+      VeryActive
+      level
+      map
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    enum WeightGoal {
+      Gain
+      Lose
+      Maintain
+      goal
+      map
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.FitnessProfileDao {
+        {abstract} + Get()
+        {abstract} + Insert()
+        {abstract} + Update()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfileFragment {
+        ~ MAXBMI : int
+        ~ MAXBMR : int
+        ~ MAXCALORIES : int
+        ~ MAXWEIGHT : int
+        ~ bmi_progress : CircularProgressIndicator
+        ~ bmr_progress : CircularProgressIndicator
+        ~ calories_progress : CircularProgressIndicator
+        ~ feetOptionsDefaultTxt : String
+        ~ inchesOptionsDefaultTxt : String
+        ~ mFeetDropdown : Spinner
+        ~ mGoalOptions : ArrayList<String>
+        ~ mGoalsDropdown : Spinner
+        ~ mInchesDropdown : Spinner
+        ~ mSeekBarActivity : BubbleSeekBar
+        ~ mSeekBarWeight : SeekBar
+        ~ mSubmitBtn : MaterialButton
+        ~ mWeightGoalInput : TextInputEditText
+        ~ mfeetOptions : ArrayList<String>
+        ~ minchesOptions : ArrayList<String>
+        + FitnessProfileFragment()
+        + onAttach()
+        + onCreate()
+        + onCreateView()
+        + onSaveInstanceState()
+        + onViewStateRestored()
+        ~ addTextChangeListener()
+        ~ createSpinnerOptions()
+        ~ getFeetAndInches()
+        ~ getOrCreateFitnessProfile()
+        ~ initGuiOptions()
+        ~ save()
+        ~ setCircularProgressValue()
+        ~ setSeekBars()
+        ~ setSubmitListener()
+        ~ updateGui()
+        - fitnessLevelToSlidebarVal()
+        - getNumFitnessLevelOptions()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfileFragment.GoalOptionsHandler {
+        + select()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfileFragment.HeightOptionsHandler {
+        + select()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.FitnessProfileFragment.OnSelect {
+        {abstract} + select()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfileFragment.UserHeight {
+        ~ feet : int
+        ~ inches : int
+        ~ UserHeight()
+        ~ calcHeightInInches()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.HeaderFragment {
+        - mContext : Context
+        - mHomeImageView : ImageView
+        - mProfilePictureImageView : CircularImageView
+        - mProfilePicturePath : String
+        - mUserName : String
+        - mUserNameTextView : MaterialTextView
+        + HeaderFragment()
+        + onAttach()
+        + onCreateView()
+        + onDetach()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.JSONWeatherUtils {
+        {static} + getWeatherData()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.LocationData {
+        - mCity : String
+        - mCountry : String
+        - mLatitude : double
+        - mLongitude : double
+        - mSunrise : long
+        - mSunset : long
+        + getCity()
+        + getCountry()
+        + getLatitude()
+        + getLongitude()
+        + getSunrise()
+        + getSunset()
+        + setCity()
+        + setCountry()
+        + setLatitude()
+        + setLongitude()
+        + setSunrise()
+        + setSunset()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.LoginActivity {
+        ~ mButtonCreateAccount : MaterialButton
+        ~ mButtonLogin : MaterialButton
+        ~ mTextInputUserName : TextInputEditText
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.MainActivity {
+        - mDashboardBtn : Button
+        - mEditUserBtn : Button
+        - mExistingUserLoginBtn : Button
+        - mFitnessBtn : Button
+        - mNewUserLoginBtn : Button
+        - mWeatherBtn : Button
+        + onClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.NewUserLoginFragment {
+        + NewUserLoginFragment()
+        + onAttach()
+        + onCreateView()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfile {
+        {static} + MAXIMUM_AGE : int
+        {static} + MAXIMUM_GENDER : int
+        {static} + MINIMUM_AGE : int
+        {static} + MINIMUM_GENDER : int
+        {static} + STRING_MINIMUM_CHARACTER_LIMIT : int
+        {static} + USER_NAME_MAXIMUM_CHARACTER_LIMIT : int
+        {static} + USER_NAME_MINIMUM_CHARACTER_LIMIT : int
+        - Age : int
+        - City : String
+        - Country : String
+        - FirstName : String
+        - Gender : double
+        - LastName : String
+        - ProfileImageFilePath : String
+        - State : String
+        - UserName : String
+        + Update()
+        + UserProfile()
+        + UserProfile()
+        + getAge()
+        + getCity()
+        + getCountry()
+        + getFirstName()
+        + getGender()
+        + getLastName()
+        + getProfileImageFilePath()
+        + getState()
+        + getUserName()
+        + setAge()
+        + setCity()
+        + setCountry()
+        + setFirstName()
+        + setGender()
+        + setLastName()
+        + setProfileImageFilePath()
+        + setState()
+        + setUserName()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfileActivity {
+        ~ mUsername : String
+        + OnFragmentInteractionListener()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.UserProfileDao {
+        {abstract} + Get()
+        {abstract} + Insert()
+        {abstract} + Update()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfileFragment {
+        {static} ~ REQUEST_IMAGE_CAPTURE : int
+        ~ mButtonSubmit : MaterialButton
+        ~ mCountryAdapter : ArrayAdapter<String>
+        ~ mImageButtonProfilePic : ImageButton
+        ~ mImageViewProfilePic : CircularImageView
+        ~ mProfileBitmap : Bitmap
+        ~ mProfilePicturePath : String
+        ~ mSeekBarAge : SeekBar
+        ~ mSeekBarSex : SeekBar
+        ~ mSpinnerCountry : Spinner
+        ~ mSpinnerState : Spinner
+        ~ mStateAdapter : ArrayAdapter<String>
+        ~ mTextEditCity : TextInputEditText
+        ~ mTextEditFirstName : TextInputEditText
+        ~ mTextEditLastName : TextInputEditText
+        ~ mTextEditUsername : TextInputEditText
+        ~ mUpdateStates : Boolean
+        ~ mUsername : String
+        {static} - mCanadaProvinces : ArrayList<String>
+        {static} - mCountries : ArrayList<String>
+        {static} - mUsaStates : ArrayList<String>
+        + UserProfileFragment()
+        + getConvertedValue()
+        + getConvertedValueReverse()
+        + getUiElements()
+        + onActivityResult()
+        + onAttach()
+        + onClick()
+        + onCreate()
+        + onCreateView()
+        + onDetach()
+        + onSaveInstanceState()
+        + onViewStateRestored()
+        - retrieveImage()
+        - saveImage()
+        - setCountrySpinner()
+        - setCurrentUser()
+        - setCurrentUser()
+        - setSeekBars()
+        - setStates()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.UserProfileFragment.OnFragmentInteractionListener {
+        {abstract} + OnFragmentInteractionListener()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.VolleySingleton {
+        {static} - mContext : Context
+        {static} - mInstance : VolleySingleton
+        - mRequestQueue : RequestQueue
+        + addToRequestQueue()
+        + cancelAllRequests()
+        {static} + getInstance()
+        + getRequestQueue()
+        - VolleySingleton()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherActivity {
+        ~ mProfilePicturePath : String
+        ~ mUserName : String
+        + dispatchTouchEvent()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData {
+        + getClouds()
+        + getCurrentCondition()
+        + getLocationData()
+        + getRain()
+        + getSnow()
+        + getTemperature()
+        + getWind()
+        + setClouds()
+        + setCurrentCondition()
+        + setLocationData()
+        + setRain()
+        + setSnow()
+        + setTemperature()
+        + setWind()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData.Clouds {
+        - mPerc : long
+        + getPerc()
+        + setPerc()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData.CurrentCondition {
+        - mCondition : String
+        - mDescr : String
+        - mHumidity : double
+        - mIcon : String
+        - mPressure : double
+        - mWeatherId : long
+        + getCondition()
+        + getDescr()
+        + getHumidity()
+        + getIcon()
+        + getPressure()
+        + getWeatherId()
+        + setCondition()
+        + setDescr()
+        + setHumidity()
+        + setIcon()
+        + setPressure()
+        + setWeatherId()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData.Rain {
+        - mAmount : double
+        - mTime : String
+        + getAmount()
+        + getTime()
+        + setAmount()
+        + setTime()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData.Snow {
+        - mAmount : double
+        - mTime : String
+        + getAmount()
+        + getTime()
+        + setAmount()
+        + setTime()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData.Temperature {
+        - mMaxTemp : double
+        - mMinTemp : double
+        - mTemp : double
+        + getMaxTemp()
+        + getMinTemp()
+        + getTemp()
+        + setMaxTemp()
+        + setMinTemp()
+        + setTemp()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData.Wind {
+        - mDeg : double
+        - mSpeed : double
+        + getDeg()
+        + getSpeed()
+        + setDeg()
+        + setSpeed()
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherDataFragment {
+        - countryToCountryCode : HashMap<String, String>
+        - mCityTe : TextInputEditText
+        - mCountryTe : TextInputEditText
+        - mCurrentTempTv : MaterialTextView
+        - mCurrentWeatherLocTv : MaterialTextView
+        - mHumidityTv : TextView
+        - mRequestQueue : RequestQueue
+        - mSubmitBtn : MaterialButton
+        - mWindTv : TextView
+        + WeatherDataFragment()
+        + onClick()
+        + onCreate()
+        + onCreateView()
+        + onSaveInstanceState()
+        + onViewStateRestored()
+        ~ getCountryCode()
+        ~ getWeatherData()
+        ~ setWeatherValues()
+    }
+  }
+  
+
+  com.main.project1.AppDb -up-|> androidx.room.RoomDatabase
+  com.main.project1.DashboardActivity .up.|> com.main.project1.DashboardAdapter.OnClickListener
+  com.main.project1.DashboardActivity .up.|> com.main.project1.UserProfileFragment.OnFragmentInteractionListener
+  com.main.project1.DashboardActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.DashboardAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.main.project1.DashboardAdapter o-- com.main.project1.DashboardAdapter.OnClickListener : mOnClickListener
+  com.main.project1.DashboardAdapter +-down- com.main.project1.DashboardAdapter.OnClickListener
+  com.main.project1.DashboardAdapter +-down- com.main.project1.DashboardAdapter.ViewHolder
+  com.main.project1.DashboardAdapter.ViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.main.project1.DashboardData .up.|> android.os.Parcelable
+  com.main.project1.DashboardData +-down- com.main.project1.DashboardData.Item
+  com.main.project1.DashboardFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.FitnessActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.FitnessProfile .up.|> java.io.Serializable
+  com.main.project1.FitnessProfile o-- com.main.project1.FitnessProfile.WeightGoal : Goal
+  com.main.project1.FitnessProfile o-- com.main.project1.FitnessProfile.FitnessLevel : Level
+  com.main.project1.FitnessProfile +-down- com.main.project1.FitnessProfile.FitnessLevel
+  com.main.project1.FitnessProfile +-down- com.main.project1.FitnessProfile.WeightGoal
+  com.main.project1.FitnessProfileFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.AppDb : appDb
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfileDao : fitnessProfileDao
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfile : mCurrentFitnessProfile
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfileFragment.UserHeight : mCurrentUserHeight
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfile : mSavedFitnessProfile
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.UserProfile : mUserProfile
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.UserProfileDao : userProfileDao
+  com.main.project1.FitnessProfileFragment +-down- com.main.project1.FitnessProfileFragment.GoalOptionsHandler
+  com.main.project1.FitnessProfileFragment +-down- com.main.project1.FitnessProfileFragment.HeightOptionsHandler
+  com.main.project1.FitnessProfileFragment +-down- com.main.project1.FitnessProfileFragment.OnSelect
+  com.main.project1.FitnessProfileFragment +-down- com.main.project1.FitnessProfileFragment.UserHeight
+  com.main.project1.FitnessProfileFragment.GoalOptionsHandler .up.|> com.main.project1.FitnessProfileFragment.OnSelect
+  com.main.project1.FitnessProfileFragment.HeightOptionsHandler .up.|> com.main.project1.FitnessProfileFragment.OnSelect
+  com.main.project1.HeaderFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.LoginActivity .up.|> android.view.View.OnClickListener
+  com.main.project1.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.MainActivity .up.|> android.view.View.OnClickListener
+  com.main.project1.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.NewUserLoginFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.UserProfile .up.|> java.io.Serializable
+  com.main.project1.UserProfileActivity .up.|> com.main.project1.UserProfileFragment.OnFragmentInteractionListener
+  com.main.project1.UserProfileActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.UserProfileFragment .up.|> android.view.View.OnClickListener
+  com.main.project1.UserProfileFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.UserProfileFragment o-- com.main.project1.UserProfileFragment.OnFragmentInteractionListener : mFragmentInteractionListener
+  com.main.project1.UserProfileFragment o-- com.main.project1.UserProfile : mUserProfile
+  com.main.project1.UserProfileFragment o-- com.main.project1.UserProfileDao : mUserProfileDao
+  com.main.project1.UserProfileFragment +-down- com.main.project1.UserProfileFragment.OnFragmentInteractionListener
+  com.main.project1.WeatherActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Clouds : mClouds
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.CurrentCondition : mCurrentCondition
+  com.main.project1.WeatherData o-- com.main.project1.LocationData : mLocationData
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Rain : mRain
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Snow : mSnow
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Temperature : mTemperature
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Wind : mWind
+  com.main.project1.WeatherData +-down- com.main.project1.WeatherData.Clouds
+  com.main.project1.WeatherData +-down- com.main.project1.WeatherData.CurrentCondition
+  com.main.project1.WeatherData +-down- com.main.project1.WeatherData.Rain
+  com.main.project1.WeatherData +-down- com.main.project1.WeatherData.Snow
+  com.main.project1.WeatherData +-down- com.main.project1.WeatherData.Temperature
+  com.main.project1.WeatherData +-down- com.main.project1.WeatherData.Wind
+  com.main.project1.WeatherDataFragment .up.|> android.view.View.OnClickListener
+  com.main.project1.WeatherDataFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.WeatherDataFragment o-- com.main.project1.AppDb : appDb
+  com.main.project1.WeatherDataFragment o-- com.main.project1.UserProfile : mUserProfile
+  com.main.project1.WeatherDataFragment o-- com.main.project1.UserProfileDao : userProfileDao
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

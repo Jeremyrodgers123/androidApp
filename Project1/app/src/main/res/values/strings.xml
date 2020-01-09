@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Lumberjack Lifestyles</string>
+    <string name="title_activity_new_user">NewUser</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_weather">WeatherActivity</string>
+    <string name="title_activity_userprofile">UserProfileActivity</string>
+    <string name="title_activity_fitness">FitnessActivity</string>
+    <string name="dashboard_menu_fragment_text">Hello blank fragment</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="fitness_profile_title">Fitness Profile</string>
+    <string name="weather_data_title">Weather</string>
+    <string name="submit">Save Profile</string>
+    <string name="submit_weather">Get Weather</string>
+    <string name="default_weather_text">0 F</string>
+    <string name="humidity_label">Humidity: </string>
+    <string name="wind_label">Wind: </string>
+    <string name="bmi_label">BMI</string>
+    <string name="bmr_label">BMR</string>
+    <string name="calories_label">Calories</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_edit_user">EditUserActivity</string>
+    <string name="title_activity_step">StepActivity</string>
+</resources>

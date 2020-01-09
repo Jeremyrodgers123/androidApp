@@ -1,0 +1,228 @@
+@startuml
+
+title __APP's Class Diagram__\n
+
+  namespace com.main.project1 {
+    abstract class com.main.project1.AppDb {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.AppDb_Impl {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.BuildConfig {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardActivity {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardAdapter {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardData {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.DashboardFragment {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessActivity {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfile {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.FitnessProfileDao {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfileDao_Impl {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.FitnessProfileFragment {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.HeaderFragment {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.JSONWeatherUtils {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.LocationData {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.LoginActivity {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.MainActivity {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.NewUserLoginFragment {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfile {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfileActivity {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    interface com.main.project1.UserProfileDao {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfileDao_Impl {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.UserProfileFragment {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.VolleySingleton {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherActivity {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherData {
+    }
+  }
+  
+
+  namespace com.main.project1 {
+    class com.main.project1.WeatherDataFragment {
+    }
+  }
+  
+
+  com.main.project1.AppDb -up-|> androidx.room.RoomDatabase
+  com.main.project1.AppDb_Impl -up-|> com.main.project1.AppDb
+  com.main.project1.AppDb_Impl o-- com.main.project1.FitnessProfileDao : _fitnessProfileDao
+  com.main.project1.AppDb_Impl o-- com.main.project1.UserProfileDao : _userProfileDao
+  com.main.project1.DashboardActivity .up.|> com.main.project1.DashboardAdapter.OnClickListener
+  com.main.project1.DashboardActivity .up.|> com.main.project1.UserProfileFragment.OnFragmentInteractionListener
+  com.main.project1.DashboardActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.DashboardAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.main.project1.DashboardAdapter o-- com.main.project1.DashboardAdapter.OnClickListener : mOnClickListener
+  com.main.project1.DashboardData .up.|> android.os.Parcelable
+  com.main.project1.DashboardFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.FitnessActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.FitnessProfile .up.|> java.io.Serializable
+  com.main.project1.FitnessProfile o-- com.main.project1.FitnessProfile.WeightGoal : Goal
+  com.main.project1.FitnessProfile o-- com.main.project1.FitnessProfile.FitnessLevel : Level
+  com.main.project1.FitnessProfileDao_Impl .up.|> com.main.project1.FitnessProfileDao
+  com.main.project1.FitnessProfileFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.AppDb : appDb
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfileDao : fitnessProfileDao
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfile : mCurrentFitnessProfile
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfileFragment.UserHeight : mCurrentUserHeight
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.FitnessProfile : mSavedFitnessProfile
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.UserProfile : mUserProfile
+  com.main.project1.FitnessProfileFragment o-- com.main.project1.UserProfileDao : userProfileDao
+  com.main.project1.HeaderFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.LoginActivity .up.|> android.view.View.OnClickListener
+  com.main.project1.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.MainActivity .up.|> android.view.View.OnClickListener
+  com.main.project1.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.NewUserLoginFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.UserProfile .up.|> java.io.Serializable
+  com.main.project1.UserProfileActivity .up.|> com.main.project1.UserProfileFragment.OnFragmentInteractionListener
+  com.main.project1.UserProfileActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.UserProfileDao_Impl .up.|> com.main.project1.UserProfileDao
+  com.main.project1.UserProfileFragment .up.|> android.view.View.OnClickListener
+  com.main.project1.UserProfileFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.UserProfileFragment o-- com.main.project1.UserProfileFragment.OnFragmentInteractionListener : mFragmentInteractionListener
+  com.main.project1.UserProfileFragment o-- com.main.project1.UserProfile : mUserProfile
+  com.main.project1.UserProfileFragment o-- com.main.project1.UserProfileDao : mUserProfileDao
+  com.main.project1.WeatherActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Clouds : mClouds
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.CurrentCondition : mCurrentCondition
+  com.main.project1.WeatherData o-- com.main.project1.LocationData : mLocationData
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Rain : mRain
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Snow : mSnow
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Temperature : mTemperature
+  com.main.project1.WeatherData o-- com.main.project1.WeatherData.Wind : mWind
+  com.main.project1.WeatherDataFragment .up.|> android.view.View.OnClickListener
+  com.main.project1.WeatherDataFragment -up-|> androidx.fragment.app.Fragment
+  com.main.project1.WeatherDataFragment o-- com.main.project1.AppDb : appDb
+  com.main.project1.WeatherDataFragment o-- com.main.project1.UserProfile : mUserProfile
+  com.main.project1.WeatherDataFragment o-- com.main.project1.UserProfileDao : userProfileDao
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
